@@ -1,0 +1,425 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Muhammad Ishar — portfolio
+   Display: Bodoni Moda (opsz 96 for hairline contrast)
+   Text:    Archivo (wght 100–900 + wdth 62–125, one file)
+   To swap the display face, change --font-display and the opsz in
+   --display-vary. Nothing else needs to move.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@font-face{
+  font-family:'Bodoni Moda';
+  src:url('../assets/fonts/BodoniModa-400-900-latin.woff2') format('woff2');
+  font-weight:400 900; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:'Bodoni Moda';
+  src:url('../assets/fonts/BodoniModa-400-900-italic-latin.woff2') format('woff2');
+  font-weight:400 900; font-style:italic; font-display:swap;
+}
+@font-face{
+  font-family:'Archivo';
+  src:url('../assets/fonts/Archivo-100-900-latin.woff2') format('woff2');
+  font-weight:100 900; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:'Archivo';
+  src:url('../assets/fonts/Archivo-100-900-italic-latin.woff2') format('woff2');
+  font-weight:100 900; font-style:italic; font-display:swap;
+}
+
+:root{
+  --font-display:'Bodoni Moda', Georgia, 'Times New Roman', serif;
+  --font-text:'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --display-vary:'opsz' 96, 'wght' 400;
+
+  --bg:#07080b;
+  --fg:#f3f1ee;
+  --muted:#a8a29a;
+  /* --dim lands on 10–12px labels, so it has to clear 4.5:1 against the
+     darkest background. #6b6760 measured 3.5:1 and failed; this is ~5.4:1. */
+  --dim:#8c877e;
+
+  --glass-bg-a:rgba(255,255,255,.075);
+  --glass-bg-b:rgba(255,255,255,.022);
+  --glass-line:rgba(255,255,255,.11);
+  --glass-lift:rgba(255,255,255,.15);
+  --blur:22px;
+
+  --accent:#8be9fd;
+  --accent-warm:#f0b866;
+
+  --r:20px;
+  --pad:clamp(22px,3.2vw,38px);
+  --gut:clamp(20px,5vw,72px);
+  --maxw:1240px;
+
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --ease-in:cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+:where(section){scroll-margin-top:clamp(84px,11vw,110px)}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:var(--font-text);
+  font-variation-settings:'wght' 400,'wdth' 100;
+  font-synthesis:none;
+  font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  /* clip, not hidden: `overflow-x:hidden` on body makes overflow-y compute to
+     auto, which turns body into a scroll container and breaks scroll-linked JS. */
+  overflow-x:clip;
+}
+img{max-width:100%;display:block}
+ul,ol{list-style:none}
+a{color:inherit;text-decoration:none}
+
+:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+  border-radius:3px;
+}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--accent);color:#04202a;padding:12px 20px;
+  font-size:13px;font-weight:600;border-radius:0 0 6px 0;
+}
+.skip:focus{left:0}
+
+/* ── the colour the glass refracts ─────────────────────────────────── */
+.aurora{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.aurora span{
+  position:absolute;display:block;border-radius:50%;
+  filter:blur(85px);
+  will-change:transform;
+}
+.aurora span:nth-child(1){
+  width:52vw;height:52vw;left:-12vw;top:-14vw;
+  background:radial-gradient(circle at 50% 50%,rgba(109,40,217,.55),rgba(109,40,217,0) 70%);
+  animation:drift1 26s var(--ease-in) infinite alternate;
+}
+.aurora span:nth-child(2){
+  width:46vw;height:46vw;right:-10vw;top:6vh;
+  background:radial-gradient(circle at 50% 50%,rgba(8,145,178,.5),rgba(8,145,178,0) 70%);
+  animation:drift2 32s var(--ease-in) infinite alternate;
+}
+.aurora span:nth-child(3){
+  width:58vw;height:58vw;left:14vw;bottom:-24vw;
+  background:radial-gradient(circle at 50% 50%,rgba(13,148,136,.42),rgba(13,148,136,0) 70%);
+  animation:drift3 38s var(--ease-in) infinite alternate;
+}
+.aurora span:nth-child(4){
+  width:34vw;height:34vw;right:8vw;bottom:8vh;
+  background:radial-gradient(circle at 50% 50%,rgba(180,83,9,.34),rgba(180,83,9,0) 70%);
+  animation:drift4 29s var(--ease-in) infinite alternate;
+}
+@keyframes drift1{to{transform:translate3d(14vw,10vh,0) scale(1.16)}}
+@keyframes drift2{to{transform:translate3d(-12vw,16vh,0) scale(.86)}}
+@keyframes drift3{to{transform:translate3d(10vw,-12vh,0) scale(1.1)}}
+@keyframes drift4{to{transform:translate3d(-9vw,-9vh,0) scale(1.2)}}
+
+/* fine noise, so the glass reads as a surface rather than a gradient */
+.grain{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* ── glass ─────────────────────────────────────────────────────────── */
+.glass{
+  position:relative;
+  background:linear-gradient(148deg,var(--glass-bg-a),var(--glass-bg-b));
+  backdrop-filter:blur(var(--blur)) saturate(165%);
+  -webkit-backdrop-filter:blur(var(--blur)) saturate(165%);
+  border:1px solid var(--glass-line);
+  border-radius:var(--r);
+  box-shadow:
+    inset 0 1px 0 var(--glass-lift),
+    inset 0 -1px 0 rgba(0,0,0,.22),
+    0 26px 64px -26px rgba(0,0,0,.8);
+}
+/* the specular sweep along the top edge — what sells it as glass */
+.glass::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(148deg,rgba(255,255,255,.16),rgba(255,255,255,0) 42%);
+  opacity:.55;
+}
+.glass>*{position:relative;z-index:1}
+.pad{padding:var(--pad)}
+
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .glass{background:rgba(20,22,28,.92)}
+  .nav{background:rgba(10,11,15,.96)}
+}
+
+/* ── nav ───────────────────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:clamp(12px,2vw,20px);left:50%;transform:translateX(-50%);
+  z-index:100;width:min(var(--maxw),calc(100% - var(--gut)));
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:11px 11px 11px 20px;border-radius:999px;
+  --blur:26px;
+}
+.nav-mark{
+  font-family:var(--font-display);
+  /* opsz must track the rendered size — at 20px, opsz 96 hairlines fall under
+     one device pixel and the letters break up. Same reason .stat/.proj-idx
+     below use mid-range values instead of 96. */
+  font-variation-settings:'opsz' 14,'wght' 700;
+  font-size:21px;letter-spacing:.06em;line-height:1;
+}
+.nav nav ul{display:flex;gap:4px}
+.nav nav a{
+  display:block;padding:9px 14px;border-radius:999px;
+  font-size:12.5px;letter-spacing:.02em;color:var(--muted);
+  transition:color .25s,background-color .25s;
+}
+.nav nav a:hover{color:var(--fg);background:rgba(255,255,255,.07)}
+.nav nav a.current{color:var(--fg);background:rgba(255,255,255,.1)}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:10px;width:42px;height:42px}
+.nav-toggle span{display:block;height:1.5px;background:var(--fg);border-radius:2px;transition:transform .3s var(--ease-out),opacity .2s}
+.nav-toggle span+span{margin-top:5px}
+.nav-toggle[aria-expanded=true] span:first-child{transform:translateY(3.25px) rotate(45deg)}
+.nav-toggle[aria-expanded=true] span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+
+/* ── layout ────────────────────────────────────────────────────────── */
+.hero,.sec{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+.sec{padding-block:clamp(80px,12vw,168px)}
+
+.sec-head{display:flex;align-items:baseline;gap:clamp(14px,2.4vw,28px);margin-bottom:clamp(34px,5vw,62px)}
+.sec-num{
+  font-size:11px;letter-spacing:.24em;color:var(--dim);
+  font-variation-settings:'wght' 500;padding-top:.6em;
+}
+.sec-title{
+  font-family:var(--font-display);font-variation-settings:var(--display-vary);
+  font-weight:400;font-size:clamp(46px,8.4vw,116px);line-height:.94;
+  letter-spacing:-.028em;
+}
+
+/* ── masked line reveal ────────────────────────────────────────────── */
+.line{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.ln{display:block;transform:translateY(114%)}
+.in .ln{
+  transform:translateY(0);
+  transition:transform 720ms var(--ease-out);
+  transition-delay:calc(var(--i,0)*155ms);
+}
+/* and the exit — fade with a short upward drift, as it scrolls away */
+.out .ln{
+  transform:translateY(-32px);opacity:0;
+  transition:transform 420ms var(--ease-in),opacity 340ms linear;
+  transition-delay:calc(var(--i,0)*40ms);
+}
+.outline{color:transparent;-webkit-text-stroke:1.2px var(--fg)}
+
+/* blocks that just rise into place */
+[data-rise]{opacity:0;transform:translateY(26px)}
+.in[data-rise],.in [data-rise]{
+  opacity:1;transform:none;
+  transition:opacity .8s var(--ease-out) var(--d,0s),transform .8s var(--ease-out) var(--d,0s);
+}
+
+/* ── hero ──────────────────────────────────────────────────────────── */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding-block:clamp(120px,18vh,190px) clamp(60px,9vh,90px);position:relative;
+  /* --p is scroll progress 0→1, written by js */
+  transform:translateY(calc(var(--p,0)*-46px));
+  opacity:calc(1 - var(--p,0)*1.15);
+}
+.hero-kicker{
+  font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:clamp(18px,3vw,30px);
+}
+.hero-name{
+  font-family:var(--font-display);font-variation-settings:var(--display-vary);
+  font-weight:400;font-size:clamp(58px,14.5vw,208px);line-height:.86;
+  letter-spacing:-.045em;margin-bottom:clamp(34px,5.5vw,64px);
+}
+.hero-name .outline{-webkit-text-stroke:clamp(1px,.16vw,2.4px) var(--fg)}
+.hero-foot{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(26px,4vw,58px);align-items:start;
+}
+.hero-lede{font-size:clamp(15px,1.5vw,18.5px);line-height:1.62;max-width:44ch;color:#ddd8d0}
+.hero-meta{display:grid;gap:14px}
+.hero-meta div{display:grid;grid-template-columns:6.5em 1fr;gap:14px;align-items:baseline}
+.hero-meta dt{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.hero-meta dd{font-size:14px;color:var(--fg)}
+
+.scroll-cue{
+  position:absolute;left:var(--gut);bottom:clamp(24px,4vh,44px);
+  display:flex;align-items:center;gap:12px;
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+  transition:color .3s;
+}
+.scroll-cue:hover{color:var(--fg)}
+.scroll-cue-line{width:52px;height:1px;background:currentColor;position:relative;overflow:hidden}
+.scroll-cue-line::after{
+  content:'';position:absolute;inset:0;background:var(--accent);
+  animation:sweep 2.4s var(--ease-in) infinite;
+}
+@keyframes sweep{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+
+/* ── about ─────────────────────────────────────────────────────────── */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(18px,2.4vw,30px);align-items:start}
+.about-main p+p{margin-top:1.05em}
+.about-main .big{
+  font-family:var(--font-display);font-variation-settings:'opsz' 40,'wght' 400;
+  font-size:clamp(21px,2.5vw,31px);line-height:1.32;letter-spacing:-.012em;
+  margin-bottom:1.1em;
+}
+.about-main p:not(.big){color:#cfcac2;font-size:15.2px;line-height:1.68;max-width:60ch}
+.about-side{display:grid;gap:clamp(14px,1.8vw,20px)}
+.about-side li{display:grid;gap:7px}
+.stat{
+  font-family:var(--font-display);font-variation-settings:'opsz' 40,'wght' 500;
+  font-size:clamp(30px,3.5vw,44px);line-height:1;letter-spacing:-.02em;
+}
+.stat i{font-style:normal;font-size:.5em;color:var(--muted);vertical-align:.55em;margin-left:.06em}
+.stat-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+.interests p{font-size:14.5px;color:#cfcac2;margin-top:2px}
+
+/* ── skills ────────────────────────────────────────────────────────── */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:clamp(16px,2vw,24px)}
+.skill h3{
+  font-family:var(--font-display);font-variation-settings:'opsz' 40,'wght' 500;
+  font-weight:400;font-size:clamp(21px,2.2vw,27px);letter-spacing:-.01em;margin-bottom:6px;
+}
+.skill-note{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags li{
+  font-size:12px;letter-spacing:.01em;color:#ded9d1;
+  padding:6px 11px;border-radius:999px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.075);
+}
+.tags.sm li{font-size:11px;padding:5px 9px;color:var(--muted)}
+
+/* ── projects ──────────────────────────────────────────────────────── */
+.projects{display:grid;gap:clamp(14px,1.8vw,20px)}
+.proj{
+  display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(18px,3vw,42px);padding:var(--pad);
+  transition:transform .5s var(--ease-out),border-color .4s;
+}
+.proj:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.2)}
+.proj-idx{
+  font-family:var(--font-display);font-variation-settings:'opsz' 28,'wght' 600;
+  font-size:clamp(24px,2.8vw,36px);line-height:1;color:var(--dim);
+  letter-spacing:-.01em;
+}
+.proj-body h3{
+  font-family:var(--font-display);font-variation-settings:'opsz' 48,'wght' 500;
+  font-weight:400;font-size:clamp(22px,2.6vw,33px);line-height:1.14;
+  letter-spacing:-.015em;margin-bottom:10px;
+}
+.proj-body>p:not(.todo){font-size:14.8px;line-height:1.66;color:#cfcac2;max-width:66ch}
+.proj-body .tags{margin-top:16px}
+
+/* ── credentials ───────────────────────────────────────────────────── */
+.cred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(16px,2vw,24px)}
+.cred{display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,2.5vw,30px);align-items:center}
+.cred-score{
+  font-family:var(--font-display);font-variation-settings:'opsz' 60,'wght' 450;
+  font-size:clamp(34px,4.4vw,58px);line-height:1;letter-spacing:-.03em;
+}
+.cred-score i{font-style:normal;font-size:.42em;color:var(--muted);vertical-align:.72em}
+.cred h3{
+  font-family:var(--font-display);font-variation-settings:'opsz' 40,'wght' 500;
+  font-weight:400;font-size:clamp(19px,2.1vw,25px);margin-bottom:5px;letter-spacing:-.01em;
+}
+.cred-org{font-size:13px;color:var(--muted)}
+.cred-date{font-size:12px;color:var(--dim);margin-top:3px}
+.todo-card{align-items:start}
+
+/* ── community ─────────────────────────────────────────────────────── */
+.comm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(16px,2vw,24px)}
+.comm-grid h3{
+  font-family:var(--font-display);font-variation-settings:'opsz' 40,'wght' 500;
+  font-weight:400;font-size:clamp(20px,2.2vw,27px);margin-bottom:10px;letter-spacing:-.01em;
+}
+.comm-grid p:not(.todo){font-size:14.8px;line-height:1.65;color:#cfcac2;max-width:52ch}
+
+/* ── contact ───────────────────────────────────────────────────────── */
+.contact-card{display:grid;gap:clamp(26px,3.4vw,40px)}
+.contact-lede{
+  font-family:var(--font-display);font-variation-settings:'opsz' 40,'wght' 400;
+  font-size:clamp(19px,2.3vw,28px);line-height:1.38;letter-spacing:-.012em;max-width:40ch;
+}
+.links{display:grid;gap:0}
+.links li{
+  display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:16px;align-items:baseline;
+  padding:15px 0;border-top:1px solid rgba(255,255,255,.09);
+}
+.links li:last-child{border-bottom:1px solid rgba(255,255,255,.09)}
+.links-k{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.links-v{font-size:15px}
+
+/* Placeholders — deliberately obvious, so nothing ships half-finished.
+   The container paragraph rules use `p:not(.todo)` so they don't outrank
+   this on specificity and repaint the markers as body copy. */
+.todo{
+  display:inline-block;margin-top:12px;
+  font-size:11.5px;letter-spacing:.04em;color:var(--accent-warm);
+  border:1px dashed rgba(240,184,102,.42);border-radius:5px;
+  padding:5px 10px;background:rgba(240,184,102,.06);
+}
+.todo.inline{margin-top:0}
+
+/* ── footer ────────────────────────────────────────────────────────── */
+.foot{
+  max-width:var(--maxw);margin-inline:auto;padding:clamp(30px,4vw,44px) var(--gut) clamp(48px,7vw,80px);
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-size:12px;color:var(--dim);
+}
+
+/* ── responsive ────────────────────────────────────────────────────── */
+@media (max-width:940px){
+  .about-grid{grid-template-columns:1fr}
+  .hero-foot{grid-template-columns:1fr}
+}
+@media (max-width:820px){
+  .nav{padding:9px 9px 9px 18px}
+  .nav-toggle{display:block}
+  .nav nav{
+    position:absolute;top:calc(100% + 9px);left:0;right:0;
+    background:linear-gradient(148deg,rgba(24,26,33,.96),rgba(14,15,20,.96));
+    backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);
+    border:1px solid var(--glass-line);border-radius:18px;
+    padding:10px;
+    opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity .28s,transform .28s var(--ease-out),visibility .28s;
+  }
+  .nav.open nav{opacity:1;visibility:visible;transform:none}
+  .nav nav ul{flex-direction:column;gap:2px}
+  .nav nav a{padding:12px 15px;font-size:14px}
+}
+@media (max-width:620px){
+  :root{--blur:18px;--r:16px}
+  .proj{grid-template-columns:1fr;gap:14px}
+  .proj-idx{font-size:18px}
+  .cred{grid-template-columns:1fr;gap:14px;align-items:start}
+  .hero-meta div{grid-template-columns:1fr;gap:2px}
+  .links li{grid-template-columns:1fr;gap:5px}
+  .scroll-cue{display:none}
+  /* blur is the expensive part; fewer, smaller blobs on phones */
+  .aurora span:nth-child(4){display:none}
+  .aurora span{filter:blur(60px)}
+}
+
+/* ── motion preferences ────────────────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .ln{transform:none}
+  [data-rise]{opacity:1;transform:none}
+  .in .ln,.out .ln,.in[data-rise],.in [data-rise]{transition-duration:1ms;transition-delay:0ms}
+  .out .ln{transform:none;opacity:1}
+  .hero{transform:none;opacity:1}
+  .aurora span{animation:none}
+  .scroll-cue-line::after{animation:none}
+  .proj:hover{transform:none}
+}

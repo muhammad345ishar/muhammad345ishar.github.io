@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# local tooling config (contains local paths, not useful to anyone else)
+.claude/
+
+# dev scratch — kept on disk locally, deliberately not published
+type-specimen/
+icons/
+IMAGE-PROMPTS.md
+assets/images/
