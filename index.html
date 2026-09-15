@@ -56,10 +56,18 @@
   </h1>
 
   <div class="hero-foot">
-    <p class="hero-lede" data-rise style="--d:.5s">
-      Building across hardware, software and AI tooling — local LLM setups,
-      automation that runs unattended, and the occasional thing that just had to exist.
-    </p>
+    <div class="hero-intro">
+      <picture class="hero-portrait glass">
+        <source srcset="assets/portraits/muhammad-ishar.webp" type="image/webp">
+        <img src="assets/portraits/muhammad-ishar.jpg"
+             alt="Portrait of Muhammad Ishar wearing glasses and a suit"
+             width="900" height="1140" fetchpriority="high" decoding="async">
+      </picture>
+      <p class="hero-lede" data-rise style="--d:.5s">
+        Building across hardware, software and AI tooling — from live registration
+        queues to chess engines and messaging assistants.
+      </p>
+    </div>
     <dl class="hero-meta" data-rise style="--d:.62s">
       <div><dt>Based in</dt><dd>Rawalpindi, Punjab, Pakistan</dd></div>
       <div><dt>From</dt><dd>A farming family in Wazirabad</dd></div>
@@ -92,9 +100,9 @@
       <p>
         Coursework keeps me in circuits and mathematics: BJT and MOSFET amplifier analysis, DC power
         supply design, applied physics, calculus, linear algebra, differential equations. Away from
-        the coursework I build — a local LLM stack running on my own hardware, a Python service that
-        watches 450+ WhatsApp contacts and answers for me, a C++ game I ported off Windows because I
-        wanted to play it on a Mac.
+        the coursework I build — registration software that runs on a local network, a C++ chess
+        engine and a match arena to test it, and a Python assistant that connects WhatsApp messages
+        to Gemini and Android notifications.
       </p>
       <p>
         I come from a farming family in Wazirabad, which is where the patience for slow work comes
@@ -112,8 +120,8 @@
         <span class="stat-label">AI For Everyone — DeepLearning.AI</span>
       </li>
       <li class="glass pad" data-rise style="--d:.24s">
-        <span class="stat">450<i>+</i></span>
-        <span class="stat-label">Contacts handled by my auto-reply service</span>
+        <span class="stat">6</span>
+        <span class="stat-label">Departments supported by the O'Week token board</span>
       </li>
       <li class="glass pad interests" data-rise style="--d:.32s">
         <span class="stat-label">Outside all of it</span>
@@ -149,6 +157,7 @@
       <p class="skill-note">What I actually build with.</p>
       <ul class="tags">
         <li>Python</li><li>C++</li><li>Kotlin</li><li>JavaScript</li>
+        <li>TypeScript</li><li>React</li><li>Next.js</li><li>Express</li><li>SQLite</li>
         <li>Git</li><li>Docker</li><li>Node.js</li>
         <li>Claude Code</li><li>Android Studio</li>
         <li>LaTeX</li><li>Homebrew / macOS toolchain</li>
@@ -160,7 +169,7 @@
       <p class="skill-note">Running models locally, and wiring them into real workflows.</p>
       <ul class="tags">
         <li>Ollama</li><li>Local LLM deployment</li>
-        <li>Groq API</li><li>LLM tooling</li>
+        <li>Groq API</li><li>Gemini API</li><li>LLM tooling</li>
         <li>Prompt engineering</li>
       </ul>
     </article>
@@ -176,7 +185,83 @@
     </h2>
   </div>
 
-  <ol class="projects">
+  <p class="projects-intro">Selected work in event software, chess engines, and AI integrations.</p>
+
+  <ol class="projects" role="list">
+    <li class="glass proj" data-rise>
+      <span class="proj-idx" aria-hidden="true">01</span>
+      <div class="proj-body">
+        <span class="proj-kind">Event software</span>
+        <h3>O'Week 2026 Token Board</h3>
+        <p>A registration queue system for six university departments, designed to run from one
+           computer over event Wi-Fi. Staff can issue, call, and manage named tokens while students
+           follow a live board on their phones or a full-screen projector display.</p>
+        <ul class="tags sm"><li>React</li><li>TypeScript</li><li>Node.js / Express</li><li>Server-Sent Events</li></ul>
+        <div class="proj-footer">
+          <span>Staff roles · Local persistence · Live display</span>
+          <a class="proj-link" href="https://github.com/muhammad345ishar/oweek-2026-token-board"
+             aria-label="View O'Week 2026 Token Board source on GitHub">View source <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </li>
+
+    <li class="glass proj" data-rise style="--d:.07s">
+      <span class="proj-idx" aria-hidden="true">02</span>
+      <div class="proj-body">
+        <span class="proj-kind">Engine research</span>
+        <h3>Aether Chess</h3>
+        <p>A C++17 chess engine that speaks the UCI protocol. It combines legal move generation,
+           iterative-deepening search, alpha-beta pruning, and a transposition table, with regression
+           tests for move counts and board-state integrity.</p>
+        <ul class="tags sm"><li>C++17</li><li>UCI</li><li>Search algorithms</li><li>CMake / CTest</li></ul>
+        <div class="proj-footer"><span>Research project · Handcrafted evaluation</span></div>
+      </div>
+    </li>
+
+    <li class="glass proj" data-rise style="--d:.14s">
+      <span class="proj-idx" aria-hidden="true">03</span>
+      <div class="proj-body">
+        <span class="proj-kind">Developer tooling</span>
+        <h3>Chess Engine Arena</h3>
+        <p>A local browser interface for running two UCI engines against each other. It streams
+           the board, evaluation, search depth, and move history as a match plays, with time or
+           depth limits and a separate engine to referee legal moves.</p>
+        <ul class="tags sm"><li>Node.js</li><li>JavaScript</li><li>UCI</li><li>Server-Sent Events</li></ul>
+        <div class="proj-footer"><span>Local desktop tool · No npm dependencies</span></div>
+      </div>
+    </li>
+
+    <li class="glass proj" data-rise style="--d:.21s">
+      <span class="proj-idx" aria-hidden="true">04</span>
+      <div class="proj-body">
+        <span class="proj-kind">AI integration prototype</span>
+        <h3>WhatsApp Gemini Agent</h3>
+        <p>A Python assistant built around the official WhatsApp Cloud API. Incoming webhooks are
+           stored in SQLite; Gemini classifies urgency and drafts replies, while ntfy sends Android
+           alerts. A local dashboard provides chat review and scheduled automation.</p>
+        <ul class="tags sm"><li>Python</li><li>Gemini API</li><li>WhatsApp Cloud API</li><li>SQLite</li><li>ntfy</li></ul>
+        <div class="proj-footer"><span>Integration prototype · Local dashboard</span></div>
+      </div>
+    </li>
+
+    <li class="glass proj" data-rise style="--d:.28s">
+      <span class="proj-idx" aria-hidden="true">05</span>
+      <div class="proj-body">
+        <span class="proj-kind">Website prototype</span>
+        <h3>Awam Raj Welfare</h3>
+        <p>A responsive welfare website prototype with campaign sections, impact sections, and a
+           donation-interest form. The Next.js API validates submissions with Zod and includes
+           a honeypot and basic rate limiting; payment processing is a future step.</p>
+        <ul class="tags sm"><li>Next.js</li><li>React</li><li>TypeScript</li><li>Zod</li></ul>
+        <div class="proj-footer"><span>Website prototype · Form validation</span></div>
+      </div>
+    </li>
+  </ol>
+
+  <details class="projects-more">
+    <summary>Earlier projects &amp; experiments</summary>
+    <p class="projects-intro">More explorations in automation, local AI, and platform tooling.</p>
+    <ol class="projects" role="list">
 
     <li class="glass proj" data-rise>
       <span class="proj-idx">01</span>
@@ -185,7 +270,7 @@
         <p>A local AI tooling project running on Ollama, set up end to end on my own hardware —
            no API bill, no data leaving the machine.</p>
         <ul class="tags sm"><li>Ollama</li><li>Local LLM</li><li>Self-hosted</li></ul>
-        <p class="todo">Needs from me: one line on what it's actually for, plus a repo link</p>
+        <!-- TODO: Add a specific use case and a verified repository link. -->
       </div>
     </li>
 
@@ -197,7 +282,7 @@
            Groq API, and escalates a notification when a message looks urgent. Built to hold up
            across 450+ contacts.</p>
         <ul class="tags sm"><li>Python</li><li>Groq API</li><li>Automation</li><li>Notifications</li></ul>
-        <p class="todo">Needs from me: repo link if public</p>
+        <!-- TODO: Add a verified repository link if public. -->
       </div>
     </li>
 
@@ -208,7 +293,7 @@
         <p>Dockerised setup of an open-source OSINT reconnaissance tool. Most of the work was the
            unglamorous part — Docker networking and living inside free API tier limits.</p>
         <ul class="tags sm"><li>Docker</li><li>Networking</li><li>OSINT</li><li>API limits</li></ul>
-        <p class="todo">Needs from me: repo link if public</p>
+        <!-- TODO: Add a verified repository link if public. -->
       </div>
     </li>
 
@@ -219,7 +304,7 @@
         <p>A three-page interactive site — login, then a riddle, then a celebration reveal.
            Deployed on Netlify. Built for one person, which is the best kind of brief.</p>
         <ul class="tags sm"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Netlify</li></ul>
-        <p class="todo">Needs from me: live URL, repo link</p>
+        <!-- TODO: Add verified live and repository URLs. -->
       </div>
     </li>
 
@@ -230,7 +315,7 @@
         <p>Patched a Windows-only C++ RPG (a Chenab University project) to build and run on macOS:
            stripped the Windows-specific dependencies and replaced them with POSIX equivalents.</p>
         <ul class="tags sm"><li>C++</li><li>POSIX</li><li>Cross-platform</li><li>Porting</li></ul>
-        <p class="todo">Needs from me: repo link or fork link</p>
+        <!-- TODO: Add a verified repository or fork link. -->
       </div>
     </li>
 
@@ -245,7 +330,8 @@
       </div>
     </li>
 
-  </ol>
+    </ol>
+  </details>
 </section>
 
 <!-- ══ credentials ════════════════════════════════════════════════════ -->
@@ -267,12 +353,7 @@
       </div>
     </article>
 
-    <article class="glass pad cred todo-card" data-rise style="--d:.1s">
-      <div>
-        <h3>More certifications</h3>
-        <p class="todo">Needs from me: any others worth listing, with issuer and date</p>
-      </div>
-    </article>
+    <!-- Add additional certifications when the issuer and date are available. -->
   </div>
 </section>
 
@@ -289,13 +370,13 @@
     <article class="glass pad" data-rise>
       <h3>Youth Force Talwara</h3>
       <p>An active member of this community and charitable organisation.</p>
-      <p class="todo">Needs from me: my actual role, and what I've organised or run</p>
+      <!-- TODO: Add a verified role and examples of community work. -->
     </article>
 
     <article class="glass pad" data-rise style="--d:.1s">
       <h3>Scouting</h3>
       <p>A Scout — the source of most of my comfort with logistics, and with sleeping outdoors.</p>
-      <p class="todo">Needs from me: rank, and notable camps or leadership roles</p>
+      <!-- TODO: Add rank and notable camps or leadership roles. -->
     </article>
   </div>
 </section>

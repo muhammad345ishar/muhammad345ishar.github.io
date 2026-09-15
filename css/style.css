@@ -200,7 +200,9 @@ a{color:inherit;text-decoration:none}
 
 /* ── masked line reveal ────────────────────────────────────────────── */
 .line{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
-.ln{display:block;transform:translateY(114%)}
+.ln{display:block}
+/* Content stays readable until JavaScript has set up the reveal observer. */
+:where(.motion-ready) .ln{transform:translateY(114%)}
 .in .ln{
   transform:translateY(0);
   transition:transform 720ms var(--ease-out);
@@ -215,7 +217,7 @@ a{color:inherit;text-decoration:none}
 .outline{color:transparent;-webkit-text-stroke:1.2px var(--fg)}
 
 /* blocks that just rise into place */
-[data-rise]{opacity:0;transform:translateY(26px)}
+:where(.motion-ready) [data-rise]{opacity:0;transform:translateY(26px)}
 .in[data-rise],.in [data-rise]{
   opacity:1;transform:none;
   transition:opacity .8s var(--ease-out) var(--d,0s),transform .8s var(--ease-out) var(--d,0s);
@@ -240,8 +242,17 @@ a{color:inherit;text-decoration:none}
 }
 .hero-name .outline{-webkit-text-stroke:clamp(1px,.16vw,2.4px) var(--fg)}
 .hero-foot{
-  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
-  gap:clamp(26px,4vw,58px);align-items:start;
+  display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+  gap:clamp(26px,4vw,58px);align-items:center;
+}
+.hero-intro{
+  display:grid;grid-template-columns:clamp(116px,12vw,160px) minmax(0,1fr);
+  gap:clamp(18px,2.2vw,28px);align-items:center;
+}
+.hero-portrait{display:block;padding:6px}
+.hero-portrait img{
+  width:100%;height:auto;aspect-ratio:15 / 19;
+  border-radius:calc(var(--r) - 6px);
 }
 .hero-lede{font-size:clamp(15px,1.5vw,18.5px);line-height:1.62;max-width:44ch;color:#ddd8d0}
 .hero-meta{display:grid;gap:14px}
@@ -299,6 +310,7 @@ a{color:inherit;text-decoration:none}
 .tags.sm li{font-size:11px;padding:5px 9px;color:var(--muted)}
 
 /* ── projects ──────────────────────────────────────────────────────── */
+.projects-intro{max-width:62ch;margin-bottom:26px;color:var(--muted);font-size:15px;line-height:1.65}
 .projects{display:grid;gap:clamp(14px,1.8vw,20px)}
 .proj{
   display:grid;grid-template-columns:auto minmax(0,1fr);
@@ -318,6 +330,28 @@ a{color:inherit;text-decoration:none}
 }
 .proj-body>p:not(.todo){font-size:14.8px;line-height:1.66;color:#cfcac2;max-width:66ch}
 .proj-body .tags{margin-top:16px}
+.proj-kind{display:block;margin-bottom:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.proj-footer{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  gap:10px 20px;margin-top:22px;padding-top:16px;border-top:1px solid var(--glass-line);
+  font-size:12px;color:var(--muted);
+}
+.proj-link{
+  display:inline-flex;align-items:center;gap:10px;min-height:44px;
+  color:var(--accent);text-decoration:underline;text-underline-offset:4px;
+}
+.proj-link:hover{color:var(--fg)}
+.projects-more{margin-top:32px;border-top:1px solid var(--glass-line)}
+.projects-more summary{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  min-height:64px;padding-block:18px;cursor:pointer;list-style:none;
+  font-size:15px;color:var(--muted);
+}
+.projects-more summary::-webkit-details-marker{display:none}
+.projects-more summary::after{content:'+';font-size:24px;line-height:1;color:var(--accent)}
+.projects-more[open] summary::after{content:'−'}
+.projects-more summary:hover{color:var(--fg)}
+.projects-more[open] summary{margin-bottom:8px}
 
 /* ── credentials ───────────────────────────────────────────────────── */
 .cred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(16px,2vw,24px)}
@@ -333,7 +367,6 @@ a{color:inherit;text-decoration:none}
 }
 .cred-org{font-size:13px;color:var(--muted)}
 .cred-date{font-size:12px;color:var(--dim);margin-top:3px}
-.todo-card{align-items:start}
 
 /* ── community ─────────────────────────────────────────────────────── */
 .comm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(16px,2vw,24px)}
@@ -397,9 +430,21 @@ a{color:inherit;text-decoration:none}
   .nav.open nav{opacity:1;visibility:visible;transform:none}
   .nav nav ul{flex-direction:column;gap:2px}
   .nav nav a{padding:12px 15px;font-size:14px}
+  /* Without JavaScript, show the section links instead of an inert menu. */
+  :root:not(.js) .nav{
+    position:relative;top:auto;left:auto;transform:none;margin:12px auto 0;
+    border-radius:var(--r);flex-wrap:wrap;justify-content:center;
+  }
+  :root:not(.js) .nav-toggle{display:none}
+  :root:not(.js) .nav nav{
+    position:static;opacity:1;visibility:visible;transform:none;
+    background:none;border:0;padding:0;backdrop-filter:none;-webkit-backdrop-filter:none;
+  }
+  :root:not(.js) .nav nav ul{flex-direction:row;flex-wrap:wrap;justify-content:center}
 }
 @media (max-width:620px){
   :root{--blur:18px;--r:16px}
+  .hero-intro{grid-template-columns:100px minmax(0,1fr);align-items:start}
   .proj{grid-template-columns:1fr;gap:14px}
   .proj-idx{font-size:18px}
   .cred{grid-template-columns:1fr;gap:14px;align-items:start}

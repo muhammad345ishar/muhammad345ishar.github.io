@@ -8,13 +8,15 @@
   'use strict';
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canObserve = 'IntersectionObserver' in window;
   const $  = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  document.documentElement.classList.add('js');
 
   /* ── reveal / exit ───────────────────────────────────────────────── */
   const animated = $$('.sec-head, .hero-kicker, [data-rise], .hero-name');
 
-  if (reduced) {
+  if (reduced || !canObserve) {
     animated.forEach(el => el.classList.add('in'));
   } else {
     // Two thresholds, because "far enough in to reveal" and "gone" are
@@ -53,6 +55,7 @@
     }, { threshold: [0, REVEAL] });
 
     animated.forEach(el => io.observe(el));
+    document.documentElement.classList.add('motion-ready');
   }
 
   /* ── hero: fade and lift as it scrolls away ──────────────────────── */
@@ -76,7 +79,7 @@
   const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
   const sections = $$('main section').filter(s => byId.has(s.id));
 
-  if (sections.length) {
+  if (sections.length && canObserve) {
     let active = null;
     const navIO = new IntersectionObserver((entries) => {
       entries.forEach(e => {
