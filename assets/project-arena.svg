@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" fill="none">
+<defs><pattern id="lines" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0v40" stroke="#79a59e" stroke-opacity=".15"/></pattern><path id="piece" d="M-51 62c7-32 48-55 48-80l-40 20-24-14 8-43 48-36 2-22 25 14c50 9 67 52 53 91C59 15 44 34 39 62Zm-6 0H48l9 15H-65Zm-13 15H61v13H-70Z"/></defs><rect width="640" height="420" fill="url(#lines)"/>
+<circle cx="320" cy="199" r="122" stroke="#86afa6" stroke-dasharray="4 7"/><path d="M122 279h397" stroke="#86afa6"/>
+<g transform="translate(218 202) rotate(-9)"><use href="#piece" fill="#294d45"/><path d="M5-76c28 15 38 38 22 69S-6 40-9 56" stroke="#6c8f7f" stroke-width="2"/><circle cx="-25" cy="-55" r="3.5" fill="#d3e5e2"/></g>
+<g transform="translate(427 202) rotate(9) scale(-1 1)"><use href="#piece" fill="#fbfaf1" stroke="#8da69d"/><path d="M5-76c28 15 38 38 22 69S-6 40-9 56" stroke="#b8cbbd" stroke-width="2"/><circle cx="-25" cy="-55" r="3.5" fill="#527567"/></g>
+<circle cx="319" cy="208" r="28" fill="#d8ed83" stroke="#839b61"/><text x="302" y="214" fill="#344b37" font-family="monospace" font-size="18">vs</text>
+<g transform="rotate(-3 320 318)"><rect x="176" y="303" width="290" height="39" rx="5" fill="#fcfbf2" stroke="#8faa9e"/><text x="190" y="327" font-family="monospace" font-size="9" fill="#4a6b5e">LIVE EVALUATION</text><path d="m314 328 14-8 15 5 16-12 11 9 20-8 12 10 15-4 10 7 13-13 12 4" stroke="#719350" stroke-width="2"/></g>
+</svg>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3e9">
+  <meta name="description" content="The sketchbook of Muhammad Ishar. Electrical Engineering at PIEAS, projects in code and circuits, and a little room to play.">
+  <meta property="og:title" content="Ishar's Sketchbook — Built from curiosity">
+  <meta property="og:description" content="Code, circuits, and a curious mind. Explore Muhammad Ishar's projects and try a little circuit experiment.">
+  <meta property="og:type" content="website">
+  <title>Ishar’s Sketchbook — Built from curiosity</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/dm-sans-500.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-serif-italic.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the sketchbook</a>
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
+    <symbol id="down" viewBox="0 0 24 24"><path d="M12 4v16m-6-6 6 6 6-6"/></symbol>
+    <symbol id="asterisk" viewBox="0 0 48 48"><path d="M24 3v42M3 24h42M9 9l30 30M9 39 39 9"/></symbol>
+    <symbol id="bolt" viewBox="0 0 24 24"><path d="m14 2-10 12h7l-1 8 10-13h-7z"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="play" viewBox="0 0 24 24"><path d="m9 5 10 7-10 7z"/></symbol>
+    <symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M15 8V4H4v11h4"/></symbol>
+  </svg>
+
+  <header class="site-header wrap">
+    <a class="brand" href="#top" aria-label="Ishar's sketchbook, back to top"><span class="brand-symbol"><svg><use href="#asterisk"/></svg></span><span>ishar<span class="brand-dot">.</span><small>THE SKETCHBOOK</small></span></a>
+    <button class="menu-button" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
+    <nav id="main-nav" aria-label="Main navigation"><a href="#projects">The projects</a><a href="#playground">Play a little <span class="nav-dot"></span></a><a href="#story">My story</a></nav>
+    <a class="header-cv" href="assets/Muhammad-Ishar-CV.pdf" download>My CV <svg class="icon"><use href="#arrow"/></svg></a>
+  </header>
+
+  <main id="main">
+    <section class="hero graph-paper" id="top">
+      <div class="wrap hero-inner">
+        <div class="notebook-line"><span class="mono">A FEW NOTES FROM MUHAMMAD ISHAR</span><span class="page-count mono">VOL. 01 / STILL FIGURING THINGS OUT</span></div>
+        <div class="hero-layout">
+          <div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span> ELECTRICAL ENGINEERING @ PIEAS</p>
+            <h1>Built from<br><em>curiosity<span class="title-dot">.</span></em></h1>
+            <svg class="title-underline" viewBox="0 0 540 30" aria-hidden="true"><path d="M5 19Q219 0 529 14M35 27Q260 10 487 24"/></svg>
+            <p class="hero-description">Hi, I’m <strong>Ishar</strong>. I write code, work with circuits, and turn “what if?” into things I can actually build.</p>
+            <div class="hero-actions"><a class="button button-ink" href="#projects">Open the sketchbook <svg class="icon"><use href="#down"/></svg></a><a class="hero-contact" href="#contact">Say hello <span>↗</span></a></div>
+            <div class="spark-control"><button id="spark-switch" class="spark-switch" type="button" aria-pressed="false"><span class="toggle-track"><span class="toggle-thumb"><svg><use href="#bolt"/></svg></span></span><span>Give it a spark</span></button><span class="handwritten spark-hint">go on, flip it<svg viewBox="0 0 60 30" aria-hidden="true"><path d="M57 6C38 25 26 23 5 12m8-5-9 5 8 8"/></svg></span></div>
+            <p class="spark-status mono" id="spark-status" role="status">A LITTLE INPUT. A LITTLE POSSIBILITY.</p>
+          </div>
+          <div class="portrait-composition">
+            <div class="portrait-backpaper" aria-hidden="true"><span>FIELD NOTES / 001</span></div>
+            <span class="handwritten portrait-note">the person behind the projects.</span>
+            <figure class="portrait-card" id="portrait-card"><span class="tape tape-top" aria-hidden="true"></span><img src="assets/ishar-900.webp" srcset="assets/ishar-450.webp 450w, assets/ishar-900.webp 900w" sizes="(max-width: 700px) 76vw, 360px" width="900" height="1140" alt="Muhammad Ishar wearing glasses and a suit against a blue background" fetchpriority="high"><figcaption><span>Muhammad Ishar<small>ENGINEER IN THE MAKING</small></span><svg class="portrait-star"><use href="#asterisk"/></svg></figcaption></figure>
+            <button class="portrait-sticker scholar-sticker" type="button" data-note="scholar" aria-pressed="false"><svg><use href="#asterisk"/></svg><span>PEEF<br>SCHOLAR</span><small>A LITTLE BACKSTORY ↗</small></button>
+            <button class="portrait-sticker pieas-sticker" type="button" data-note="pieas" aria-pressed="false">PIEAS <span>’25 — ’29</span></button>
+            <p class="portrait-note-result" id="portrait-note-result" role="status">Tap a sticker. There’s a story behind it.</p>
+            <svg class="hero-circuit" viewBox="0 0 440 110" aria-hidden="true"><path class="wire-base" d="M12 55h83l25-30h100l30 48h114l35-38h29"/><path class="wire-pulse" pathLength="1" d="M12 55h83l25-30h100l30 48h114l35-38h29"/><circle cx="12" cy="55" r="6"/><circle class="hero-led" cx="428" cy="35" r="8"/><path d="m424 12 3-7m18 22 8-3m-46-1-7-4"/></svg>
+          </div>
+        </div>
+        <div class="hero-footer"><span class="mono">CODE + CIRCUITS + THE OCCASIONAL HAPPY ACCIDENT</span><a href="#playground" class="lab-invite"><span class="mini-led"></span> There’s a tiny experiment down here <svg class="icon"><use href="#down"/></svg></a></div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects-section wrap section-space">
+      <div class="section-kicker"><span class="section-number">01</span><p class="eyebrow">THINGS I’VE BUILT</p><span class="section-rule"></span><span class="mono section-aside">SIX PROJECTS. PLENTY OF LEARNING.</span></div>
+      <div class="section-heading"><h2>From “what if”<br>to <em>“it works.”</em></h2><div class="projects-intro"><p>Software, systems, and a few useful little experiments. Each one taught me something.</p><span class="handwritten">psst… the drawings play along.</span></div></div>
+      <div class="project-toolbar"><div class="filters" role="group" aria-label="Filter projects"><button type="button" class="filter active" data-filter="all" aria-pressed="true">All notes <span>06</span></button><button type="button" class="filter" data-filter="systems" aria-pressed="false">C++ & systems</button><button type="button" class="filter" data-filter="web" aria-pressed="false">Web & automation</button></div><span class="mono index-caption">PROJECT INDEX ↙</span></div>
+      <p class="sr-only" id="filter-status" role="status"></p>
+      <div class="project-grid" id="project-grid"><!-- PROJECT_CARDS --></div>
+      <div class="projects-footnote"><svg><use href="#asterisk"/></svg><p>Made, tested, learned from. <em>Then made a little better.</em></p><span class="mono">END OF NOTES / 01</span></div>
+    </section>
+
+    <section id="playground" class="playground-section">
+      <div class="wrap section-space"><div class="section-kicker"><span class="section-number">02</span><p class="eyebrow">A SMALL DETOUR</p><span class="section-rule"></span><span class="mono section-aside">NO LAB COAT REQUIRED</span></div>
+        <div class="playground-layout"><div class="playground-copy"><span class="experiment-label mono">HANDS-ON / EXPERIMENT 001</span><h2>A tiny circuit.<br>A little <em>aha.</em></h2><p>Sometimes the best way to understand something is to play with it.</p><p>Connect the missing wire, close the switch, and make a little light.</p><div class="lab-steps"><span><b>1</b> Connect the wire</span><span><b>2</b> Flip the switch</span><span><b>3</b> Aha.</span></div><span class="handwritten lab-note">your turn to be the engineer<svg viewBox="0 0 150 40" aria-hidden="true"><path d="M3 30c53-38 88-25 138-8m-12-16 15 17-24 6"/></svg></span></div>
+        <div class="circuit-board" id="circuit-board"><div class="board-topline"><span class="mono">THE CURIOSITY CIRCUIT</span><span class="board-power mono" id="board-power">OPEN CIRCUIT</span></div><div class="circuit-stage">
+          <svg class="circuit-diagram" viewBox="0 0 600 300" aria-hidden="true">
+            <defs><pattern id="board-dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.2" fill="#566445" opacity=".16"/></pattern></defs><rect width="600" height="300" fill="url(#board-dots)"/>
+            <g class="diagram-wires"><path d="M100 166v69h135M365 235h105v-73M470 117V75H330M260 75H100v42"/><path class="connected-wire" d="M235 235c45-20 88-20 130 0"/><path class="switch-bridge" d="M260 75h70"/></g>
+            <g class="battery-symbol"><path d="M81 128h38M89 145h22M100 117v11m0 17v21"/><path d="M133 121v10m-5-5h10m-10 23h10"/></g>
+            <g class="resistor-symbol"><rect x="380" y="64" width="48" height="22" rx="3"/><path d="M390 65v20m9-20v20m9-20v20m10-20v20"/></g>
+            <g class="diagram-labels"><text x="100" y="188" text-anchor="middle">5 V</text><text x="404" y="49" text-anchor="middle">220 Ω</text><text x="512" y="145">LED</text><text x="300" y="278" text-anchor="middle" class="missing-wire-label">THE MISSING LINK</text></g>
+            <path class="led-bulb" d="M453 144v-14a17 17 0 0 1 34 0v14z"/><path class="led-base" d="M450 149h40m-35 6h30m-24 0v7m17-7v7"/><g class="led-rays"><path d="M448 117l-10-10m30 1v-14m24 21 11-9m-59 30h-14m66 0h14"/></g>
+            <path class="drag-wire" id="drag-wire" d="M235 235h0"/>
+          </svg>
+          <button id="circuit-switch" class="circuit-switch" type="button" aria-pressed="false" aria-label="Close circuit switch"><span class="switch-contact"></span><span class="switch-lever"></span><span class="switch-contact"></span><span class="switch-caption mono">SWITCH</span></button>
+          <button class="terminal terminal-a" id="terminal-a" type="button" aria-label="Select first wire terminal" aria-pressed="false"><span></span></button><button class="terminal terminal-b" id="terminal-b" type="button" aria-label="Select second wire terminal" aria-pressed="false"><span></span></button>
+        </div><div class="board-controls"><button class="wire-button" id="wire-toggle" type="button" aria-pressed="false"><span>+</span> Connect wire</button><button class="reset-button" id="circuit-reset" type="button">Reset <span>↺</span></button></div><p id="circuit-status" class="circuit-status" role="status">The wire is missing. Connect the two terminals.</p><div class="board-bottomline mono"><span>CLICK, TAP, OR DRAG TO CONNECT</span><span>A CIRCUIT SKETCH, FOR THE FUN OF IT.</span></div><span class="board-screw screw-one" aria-hidden="true">+</span><span class="board-screw screw-two" aria-hidden="true">+</span></div></div>
+      </div>
+    </section>
+
+    <section id="story" class="story-section wrap section-space"><div class="section-kicker"><span class="section-number">03</span><p class="eyebrow">THE HUMAN PART</p><span class="section-rule"></span><span class="mono section-aside">STILL LEARNING. ALWAYS BUILDING.</span></div>
+      <div class="story-layout"><div class="story-heading"><h2>More than<br>a few lines<br><em>of code.</em></h2><div class="story-sticky"><span class="tape" aria-hidden="true"></span><svg><use href="#bolt"/></svg><p>Understanding is good.<br><em>Building it is better.</em></p><span class="mono">A NOTE TO SELF</span></div></div><div class="story-copy"><p class="story-lead">I’m an Electrical Engineering student with a soft spot for <span>making things work.</span></p><p>I’m in my second year at PIEAS and a PEEF Scholar. My projects range from C++ chess engines and Python tools to full-stack JavaScript applications and circuit design.</p><p>And building isn’t always a solo activity. I co-head the IEEE PIEAS Student Branch’s CS Chapter, and I served as Head of Production for PIEAS O-Week 2026.</p><p>Different kinds of problems. The same curiosity.</p><div class="toolbox"><p class="eyebrow">WHAT’S IN MY PENCIL CASE</p><div class="skill-tags"><span>C++</span><span>Python</span><span>JavaScript</span><span>Node.js</span><span>React</span><span>Git & GitHub</span><span>GitHub Actions</span><span>LaTeX</span><span>Claude Code</span></div></div></div></div>
+      <div class="journey-grid"><div class="journey-column"><p class="eyebrow column-title">THE CLASSROOM</p><article class="timeline-item"><span class="timeline-dot"></span><p class="mono">2025 — 2029</p><h3>PIEAS</h3><p>B.S. Electrical Engineering · Second year</p><span class="scholar-tag">PEEF Scholar</span></article><article class="timeline-item"><span class="timeline-dot"></span><p class="mono">INTERMEDIATE · ICS (PHYSICS)</p><h3>Punjab College, Wazirabad</h3><p>982 / 1200 · PEEF scholarship on the 2025 result</p></article><article class="timeline-item"><span class="timeline-dot"></span><p class="mono">MATRICULATION</p><h3>Punjab College, Wazirabad</h3><p>932 / 1100</p></article></div><div class="journey-column"><p class="eyebrow column-title">BEYOND THE CLASSROOM</p><article class="role-card"><span class="role-symbol" aria-hidden="true">&lt;/&gt;</span><div><p class="mono">IEEE PIEAS SB · CS CHAPTER</p><h3>Co-Head</h3><p>Leading technical programming and chapter activities.</p></div></article><article class="role-card"><span class="role-symbol" aria-hidden="true"><svg><use href="#asterisk"/></svg></span><div><p class="mono">PIEAS O-WEEK 2026</p><h3>Head of Production</h3><p>Directing production and logistics for campus-wide orientation.</p></div></article><div class="courses"><p class="eyebrow">A LITTLE EXTRA LEARNING</p><p><strong>AI For Everyone</strong><span>DeepLearning.AI · Coursera</span></p><p><strong>HEC DLSEI</strong><span>Cohort 3 · Coursera</span></p></div></div></div>
+      <div class="coursework"><div class="coursework-heading"><h3>More notes from <em>the lab.</em></h3><span class="mono">COURSEWORK & ENGINEERING PROJECTS</span></div><details><summary><span class="mono">01</span>Residential electrical & UPS design<span class="detail-plus">+</span></summary><p>Home wiring for six rooms plus a garage/laundry, with UPS backup. MATLAB load, current, and power calculations supported NI Multisim simulation, sized to a 21.5 kW main supply and a 1.6 kW UPS.</p></details><details><summary><span class="mono">02</span>DC power supply design<span class="detail-plus">+</span></summary><p>A regulated approximately 2.70 V circuit using a full-wave rectifier and four 1N4007 diodes as a shunt regulator. Line/load regulation and ripple were analyzed and checked with an oscilloscope, with a LaTeX report.</p></details><details><summary><span class="mono">03</span>Inventory management system<span class="detail-plus">+</span></summary><p>A C++ console application for adding, updating, and searching products, recording sales, and calculating total inventory value, using structs and modular design.</p></details></div>
+    </section>
+
+    <section id="contact" class="contact-section graph-paper"><div class="wrap contact-inner"><div class="contact-topline"><p class="eyebrow">THE NEXT PAGE IS STILL BLANK.</p><svg><use href="#asterisk"/></svg></div><div class="contact-layout"><h2>Let’s put a good<br><em>idea on it.</em></h2><div><p>A project, a question, or just a hello.<br>My inbox is a good place to start.</p><a class="button button-blue" href="mailto:m_ishar@icloud.com">Write me a note <svg class="icon"><use href="#arrow"/></svg></a></div></div><div class="contact-bottom"><div class="email-row"><a href="mailto:m_ishar@icloud.com">m_ishar@icloud.com</a><button class="copy-email" type="button" aria-label="Copy email address"><svg class="icon"><use href="#copy"/></svg></button></div><div class="contact-links"><a href="tel:+923239375361">+92 323 9375361 ↗</a><a href="assets/Muhammad-Ishar-CV.pdf" download>Download CV ↓</a></div></div></div></section>
+  </main>
+  <footer class="site-footer wrap"><a class="brand footer-brand" href="#top">ishar<span class="brand-dot">.</span></a><p>© <span id="year">2026</span> Muhammad Ishar · Always room for another idea.</p><a href="#top" class="back-top mono">BACK TO THE TOP ↑</a></footer>
+  <div id="toast" class="toast" role="status"></div>
+  <dialog id="project-dialog" aria-labelledby="dialog-title"><button class="dialog-close" type="button" aria-label="Close project details"><svg class="icon"><use href="#close"/></svg></button><div class="dialog-art"><img id="dialog-image" src="assets/project-aether.svg" alt="" width="640" height="420"></div><div class="dialog-copy"><p id="dialog-category" class="eyebrow"></p><h2 id="dialog-title"></h2><p id="dialog-description"></p><h3>Inside the project</h3><ul id="dialog-details"></ul><div class="tags" id="dialog-tags"></div><a id="dialog-cta" class="dialog-cta" href="mailto:m_ishar@icloud.com">Let’s talk about this one <svg class="icon"><use href="#arrow"/></svg></a></div></dialog>
+  <noscript><p class="no-script-note wrap">All project summaries, coursework, contact details, and the CV are available here. Enable JavaScript to try the circuit and project interactions.</p></noscript>
+</body>
+</html>
